@@ -345,8 +345,8 @@ InputManager:
     m_Name: 2_player_fire
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
+    negativeButton: 
+    positiveButton: b
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 3
@@ -361,8 +361,8 @@ InputManager:
     m_Name: 2_player_toggleTurning
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
+    negativeButton: 
+    positiveButton: n
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 3
