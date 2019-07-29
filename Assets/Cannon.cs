@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
+    private bool Rotates { get; set; }
     private int RotationDirection { get; set; }
     private const float RotationSpeed = 100;
     private const float MaxAngle = 45;
@@ -12,22 +13,26 @@ public class Cannon : MonoBehaviour
     void Start()
     {
         RotationDirection = 1;
+        Rotates = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var diff = RotationSpeed * RotationDirection * Time.deltaTime;
-        SetCannonAngle(GetCannonAngle() + diff);
-        if (GetCannonAngle() < -MaxAngle)
+        if (Rotates)
         {
-            SetCannonAngle(-MaxAngle);
-            RotationDirection = 1;
-        }
-        else if (GetCannonAngle() > MaxAngle)
-        {
-            SetCannonAngle(MaxAngle);
-            RotationDirection = -1;
+            var diff = RotationSpeed * RotationDirection * Time.deltaTime;
+            SetCannonAngle(GetCannonAngle() + diff);
+            if (GetCannonAngle() < -MaxAngle)
+            {
+                SetCannonAngle(-MaxAngle);
+                RotationDirection = 1;
+            }
+            else if (GetCannonAngle() > MaxAngle)
+            {
+                SetCannonAngle(MaxAngle);
+                RotationDirection = -1;
+            } 
         }
     }
 
