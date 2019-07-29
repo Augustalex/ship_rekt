@@ -329,8 +329,8 @@ InputManager:
     m_Name: 2_player_switch
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
+    negativeButton: 
+    positiveButton: v
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 3
@@ -393,8 +393,8 @@ InputManager:
     m_Name: 3_player_switch
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
+    negativeButton: 
+    positiveButton: down
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 3
@@ -409,8 +409,8 @@ InputManager:
     m_Name: 4_player_switch
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
+    negativeButton: 
+    positiveButton: i
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 3
@@ -425,8 +425,8 @@ InputManager:
     m_Name: 4_player_fire
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
+    negativeButton: 
+    positiveButton: o
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 3
@@ -441,8 +441,8 @@ InputManager:
     m_Name: 4_player_toggleTurning
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
+    negativeButton: 
+    positiveButton: p
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 3
