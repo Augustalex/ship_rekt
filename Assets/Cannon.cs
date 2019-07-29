@@ -9,6 +9,7 @@ public class Cannon : MonoBehaviour
     private int _rotationDirection;
     private const float RotationSpeed = 10;
     private const float MaxAngle = 45;
+    private const float CannonBallSpeed = 50;
     
     // Start is called before the first frame update
     void Start()
@@ -47,7 +48,7 @@ public class Cannon : MonoBehaviour
             var rigidBody = ball.GetComponent<Rigidbody>();
             var muzzle = transform.Find("Muzzle");
             ball.transform.position = muzzle.position;
-            rigidBody.AddForce(transform.forward * 10, ForceMode.Impulse);
+            rigidBody.AddForce(transform.forward * CannonBallSpeed, ForceMode.Impulse);
         }
     }
 
