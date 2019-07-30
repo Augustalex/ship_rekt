@@ -5,19 +5,19 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     public GameObject cannonBall;
-    public string PlayerId;
+    public bool currentCannon;
+    
     private bool _rotates;
     private int _rotationDirection;
     private const float RotationSpeed = 20;
     private const float MaxAngle = 45;
-    private const float CannonBallSpeed = 50;
+    private const float CannonBallSpeed = 90;
     private const float CannonBallEndurance = 10;
 
     // Start is called before the first frame update
     void Start()
     {
         _rotationDirection = 1;
-        _rotates = true;
     }
 
     // Update is called once per frame
@@ -38,23 +38,22 @@ public class Cannon : MonoBehaviour
                 _rotationDirection = -1;
             }
         }
-
-        if (Input.GetButtonDown(PlayerId + "_player_toggleTurning"))
-        {
-            _rotates = !_rotates;
-        }
-
-        if (Input.GetButtonDown(PlayerId + "_player_fire"))
-        {
-            var ball = Instantiate(cannonBall);
-            var rigidBody = ball.GetComponent<Rigidbody>();
-            var muzzle = transform.Find("Muzzle");
-            ball.transform.position = muzzle.position;
-            rigidBody.AddForce(transform.forward * CannonBallSpeed, ForceMode.Impulse);
-            Destroy(ball, CannonBallEndurance);
-        }
     }
 
+    public void Fire()
+    {
+        var ball = Instantiate(cannonBall);
+        var rigidBody = ball.GetComponent<Rigidbody>();
+        var muzzle = transform.Find("Muzzle");
+        ball.transform.position = muzzle.position;
+        rigidBody.AddForce(muzzle.forward * CannonBallSpeed, ForceMode.Impulse);
+    }
+
+    public void ToggleTurning()
+    {
+        _rotates = !_rotates;
+    }
+    
     private float GetCannonAngle()
     {
         var angle = gameObject.transform.localRotation.eulerAngles.y;
