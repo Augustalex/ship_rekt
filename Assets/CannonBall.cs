@@ -15,7 +15,6 @@ public class CannonBall : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("BOOM! " + other.gameObject.name);
     }
 
     private void FixedUpdate()
