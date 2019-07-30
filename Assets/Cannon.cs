@@ -11,7 +11,7 @@ public class Cannon : MonoBehaviour
     private int _rotationDirection;
     private const float RotationSpeed = 20;
     private const float MaxAngle = 45;
-    private const float CannonBallSpeed = 90;
+    private const float CannonBallSpeed = 150;
     private const float CannonBallEndurance = 10;
 
     // Start is called before the first frame update

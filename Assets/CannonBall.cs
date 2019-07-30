@@ -2,6 +2,8 @@
 
 public class CannonBall : MonoBehaviour
 {
+    public GameObject Boom;
+    
     private LowPolyWater.LowPolyWater _water;
     private bool _floating;
     private Rigidbody _body;
@@ -15,6 +17,12 @@ public class CannonBall : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        var ship = other.gameObject.GetComponentInParent<Ship>();
+        if (ship)
+        {
+            var boom = Instantiate(Boom, transform.position, Quaternion.identity);
+            Destroy(boom, 10f);
+        }
     }
 
     private void FixedUpdate()

@@ -150,5 +150,9 @@ namespace LowPolyWater
                 transform.TransformPoint(thirdNearestVertex)
             };
         }
+        public Vector3[] SomeVertex()
+        {
+            return new[] {mesh.vertices[0]};
+        }
     }
 }
