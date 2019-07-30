@@ -61,9 +61,10 @@ public class Ship : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var nearestVertecies = _water.NearestVertexTo(transform.position);
+        var nearestVertecies = _water.SomeVertex();
         var position = _body.position;
-        _body.position = new Vector3(position.x, nearestVertecies[0].y, position.z);
+//        Debug.Log(nearestVertecies[0].y + ", " + nearestVertecies[1].y + ", " + nearestVertecies[2].y);
+         _body.position = new Vector3(position.x, nearestVertecies[0].y + .5f, position.z);
     }
 
     private Vector3 GetSailVector()

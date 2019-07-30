@@ -10,7 +10,7 @@ namespace DefaultNamespace
 
         private void Update()
         {
-            if (Random.value < .002f)
+            if (Random.value < .001f)
             {
                 target = Random.value * 360;
             }
