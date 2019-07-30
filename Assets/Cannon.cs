@@ -6,17 +6,18 @@ public class Cannon : MonoBehaviour
 {
     public GameObject cannonBall;
     public bool currentCannon;
-    
+
+    private AudioSource _boomSound;
     private bool _rotates;
     private int _rotationDirection;
     private const float RotationSpeed = 20;
     private const float MaxAngle = 45;
     private const float CannonBallSpeed = 150;
-    private const float CannonBallEndurance = 10;
 
     // Start is called before the first frame update
     void Start()
     {
+        _boomSound = GetComponent<AudioSource>();
         _rotationDirection = 1;
     }
 
@@ -47,13 +48,15 @@ public class Cannon : MonoBehaviour
         var muzzle = transform.Find("Muzzle");
         ball.transform.position = muzzle.position;
         rigidBody.AddForce(muzzle.forward * CannonBallSpeed, ForceMode.Impulse);
+
+        _boomSound.Play();
     }
 
     public void ToggleTurning()
     {
         _rotates = !_rotates;
     }
-    
+
     private float GetCannonAngle()
     {
         var angle = gameObject.transform.localRotation.eulerAngles.y;
