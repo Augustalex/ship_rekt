@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1459490886966533277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -26.076452, y: -0.00000029802322, z: -2.2104247}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 1459490887007353402}
   - {fileID: 1459490887951672133}
@@ -213,7 +213,6 @@ GameObject:
   - component: {fileID: 1459490887451513122}
   - component: {fileID: 1459490887451513125}
   - component: {fileID: 1459490887451513124}
-  - component: {fileID: 1459490887451513123}
   m_Layer: 0
   m_Name: CannonCube
   m_TagString: Untagged
@@ -280,19 +279,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1459490887451513123
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459490887451513121}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1459490887860843999
 GameObject:
   m_ObjectHideFlags: 0

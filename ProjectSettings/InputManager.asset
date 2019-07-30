@@ -310,11 +310,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: 1_player_action
+    m_Name: 1_player_switch
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
+    negativeButton: 
+    positiveButton: s
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 3
