@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using DefaultNamespace;
-using UnityEditor.Build;
+﻿using DefaultNamespace;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class Ship : MonoBehaviour
 {
@@ -12,15 +9,17 @@ public class Ship : MonoBehaviour
     private Rigidbody _body;
     private Sail _sail;
     private bool _controllingSail = true;
+    private LowPolyWater.LowPolyWater _water;
 
-    private const float SailSpeed = 1.5f;
-    private const float ShipDragForce = 1;
+    private const float SailSpeed = 5f;
+    private const float ShipDragForce = .25f;
     private const float ShipRotationSpeed = 800;
     private const float SailRotationSpeed = 100;
-    private const int MaxVelocity = 5;
+    private const int MaxVelocity = 10;
 
     void Start()
     {
+        _water = GameObject.FindGameObjectWithTag("water").GetComponent<LowPolyWater.LowPolyWater>();
         _body = GetComponent<Rigidbody>();
         _sail = transform.Find("Body/Sail").GetComponent<Sail>();
     }
@@ -58,6 +57,13 @@ public class Ship : MonoBehaviour
                 _body.AddTorque(heading * ShipRotationSpeed * Time.deltaTime);
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        var nearestVertecies = _water.NearestVertexTo(transform.position);
+        var position = _body.position;
+        _body.position = new Vector3(position.x, nearestVertecies[0].y, position.z);
     }
 
     private Vector3 GetSailVector()
