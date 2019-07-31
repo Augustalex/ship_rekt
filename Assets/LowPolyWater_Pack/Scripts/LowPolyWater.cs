@@ -1,5 +1,4 @@
-﻿using UnityEditor.Build;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace LowPolyWater
 {
@@ -15,7 +14,7 @@ namespace LowPolyWater
         MeshFilter meshFilter;
         Mesh mesh;
         Vector3[] vertices;
-
+ 
         private void Awake()
         {
             //Get the Mesh Filter of the gameobject

@@ -20,6 +20,8 @@ public class CannonBall : MonoBehaviour
         var ship = other.gameObject.GetComponentInParent<Ship>();
         if (ship)
         {
+            ship.DoDamage();
+            
             var boom = Instantiate(Boom, transform.position, Quaternion.identity);
             Destroy(boom, 10f);
         }
