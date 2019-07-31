@@ -20,10 +20,11 @@ public class Ship : MonoBehaviour
     private const float ShipDragForce = .25f;
     private const float ShipRotationSpeed = 800;
     private const float SailRotationSpeed = 100;
-    private const int MaxVelocity = 10;
+    private const float PaddleRotationSpeed = 25;
 
     private float _sinkTime = 0;
     private float _sinkDownTime = 0;
+    private RowManager _rowManager;
 
     void Start()
     {
@@ -57,16 +58,23 @@ public class Ship : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown(PlayerId + "_player_switch") && !_sailGone)
+        if (Input.GetButtonDown(PlayerId + "_player_switch"))
         {
             _controllingSail = !_controllingSail;
+            if (_sailGone)
+            {
+                _rowManager.StopRowing();
+            }
         }
 
-        if (_body.velocity.magnitude < MaxVelocity)
+        if (_body.velocity.magnitude < GetMaxVelocity())
         {
             if (_sailGone)
             {
-                var speedAhead = GetSailVector() + transform.forward * ShipDragForce * 4f;
+                var rowVector = _controllingSail
+                    ? _rowManager.GetRowingVector(transform) * 10
+                    : _rowManager.GetRowingVector(transform) * -10;
+                var speedAhead = GetSailVector() * .1f + rowVector;
                 _body.AddForce(speedAhead, ForceMode.Acceleration);
             }
             else
@@ -79,21 +87,47 @@ public class Ship : MonoBehaviour
         var axis = Input.GetAxis(PlayerId + "_player_horizontal");
         if (axis > .5f || axis < -.5f)
         {
-            if (_controllingSail)
+            if (_sailGone)
             {
+                _rowManager.StopRowing();
+
+                if (axis > .5f)
+                {
+                    _rowManager.RowRight();
+                }
+                else
+                {
+                    _rowManager.RowLeft();
+                }
+
                 var heading = axis < -.5f
                     ? -_sail.transform.up
                     : _sail.transform.up;
-                heading = heading * Time.deltaTime * SailRotationSpeed;
-                _sail.transform.Rotate(heading);
+                heading = heading * Time.deltaTime * PaddleRotationSpeed;
+                _body.transform.Rotate(heading);
             }
             else
             {
-                var heading = axis < -.5f
-                    ? -transform.up
-                    : transform.up;
-                _body.AddTorque(heading * ShipRotationSpeed * Time.deltaTime);
+                if (_controllingSail)
+                {
+                    var heading = axis < -.5f
+                        ? -_sail.transform.up
+                        : _sail.transform.up;
+                    heading = heading * Time.deltaTime * SailRotationSpeed;
+                    _sail.transform.Rotate(heading);
+                }
+                else
+                {
+                    var heading = axis < -.5f
+                        ? -transform.up
+                        : transform.up;
+                    _body.AddTorque(heading * ShipRotationSpeed * Time.deltaTime);
+                }
             }
+        }
+        else
+        {
+            _rowManager.StopRowing();
         }
     }
 
@@ -103,7 +137,6 @@ public class Ship : MonoBehaviour
 
         var nearestVertecies = _water.SomeVertex();
         var position = _body.position;
-//        Debug.Log(nearestVertecies[0].y + ", " + nearestVertecies[1].y + ", " + nearestVertecies[2].y);
         _body.position = new Vector3(position.x, nearestVertecies[0].y + .5f, position.z);
     }
 
@@ -119,9 +152,7 @@ public class Ship : MonoBehaviour
         _health -= 1;
         if (_health == 1)
         {
-            transform.Find("Body/Sail").gameObject.SetActive(false);
-            _sailGone = true;
-            _controllingSail = false;
+            ReplaceSailWithPaddles();
         }
         else if (_health == 2)
         {
@@ -131,6 +162,27 @@ public class Ship : MonoBehaviour
         {
             Sink();
         }
+    }
+
+    private float GetMaxVelocity()
+    {
+        if (_sailGone)
+        {
+            return 5;
+        }
+
+        return 10;
+    }
+
+    private void ReplaceSailWithPaddles()
+    {
+        _sailGone = true;
+
+        transform.Find("Body/Sail").gameObject.SetActive(false);
+
+        var paddleParent = transform.Find("Body/Paddles");
+        paddleParent.gameObject.SetActive(true);
+        _rowManager = paddleParent.GetComponent<RowManager>();
     }
 
     private void Sink()

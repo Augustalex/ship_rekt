@@ -6,7 +6,7 @@ namespace DefaultNamespace
     {
         private GameObject _wind;
 
-        public void Start()
+        public void Awake()
         {
             _wind = GameObject.FindGameObjectWithTag("wind");
         }

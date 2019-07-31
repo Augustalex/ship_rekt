@@ -7,8 +7,8 @@ public class CannonManager : MonoBehaviour
 {
     public string PlayerId;
     public List<Cannon> Cannons;
-    private int _cannonBalls = 4;
-
+    private const int MaxCannonBalls = 4;
+    private int _cannonBalls = MaxCannonBalls;
     // Update is called once per frame
     void Update()
     {
@@ -47,6 +47,10 @@ public class CannonManager : MonoBehaviour
         return Cannons.First(c => !c.currentCannon);
     }
 
+    public bool CanAddCannonBall()
+    {
+        return _cannonBalls < MaxCannonBalls;
+    }
     public void AddCannonBall()
     {
         _cannonBalls += 1;
