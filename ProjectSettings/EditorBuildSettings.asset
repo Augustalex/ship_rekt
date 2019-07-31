@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Agge.unity
+    guid: 00b72bb0601033c4a95896c2fdfe7890
   m_configObjects: {}

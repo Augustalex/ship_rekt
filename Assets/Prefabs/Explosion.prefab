@@ -43,6 +43,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boom
       objectReference: {fileID: 0}
+    - target: {fileID: 8441040318546926248, guid: 984bf58a99e976a408a985279cc5a2f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8441040318546678534, guid: 984bf58a99e976a408a985279cc5a2f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -97,6 +102,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 87.452
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441040318527306072, guid: 984bf58a99e976a408a985279cc5a2f1,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441040318527306072, guid: 984bf58a99e976a408a985279cc5a2f1,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984bf58a99e976a408a985279cc5a2f1, type: 3}

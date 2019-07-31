@@ -6,7 +6,7 @@ using UnityEngine;
 public class CannonManager : MonoBehaviour
 {
     public string PlayerId;
-    public Cannon[] Cannons;
+    public List<Cannon> Cannons;
     private int _cannonBalls = 4;
 
     // Update is called once per frame
@@ -50,5 +50,15 @@ public class CannonManager : MonoBehaviour
     public void AddCannonBall()
     {
         _cannonBalls += 1;
+    }
+
+    public void RemoveOneCannon()
+    {
+        var activeCannon = GetActiveCannon();
+        Cannons.Remove(activeCannon);
+        activeCannon.gameObject.SetActive(false);
+
+        GetUnactiveCannon().currentCannon = true;
+
     }
 }
