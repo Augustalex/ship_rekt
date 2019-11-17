@@ -125,7 +125,7 @@ public class Ship : MonoBehaviour
                 }
             }
         }
-        else
+        else if(_sailGone)
         {
             _rowManager.StopRowing();
         }

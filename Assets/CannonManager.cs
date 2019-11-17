@@ -12,7 +12,7 @@ public class CannonManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown(PlayerId + "_player_switch"))
+        if (CanSwitchCannon() && Input.GetButtonDown(PlayerId + "_player_switch"))
         {
             var activeCannon = GetActiveCannon();
             var unactiveCannon = GetUnactiveCannon();
@@ -35,6 +35,11 @@ public class CannonManager : MonoBehaviour
                 _cannonBalls -= 1;
             }
         }
+    }
+
+    private bool CanSwitchCannon()
+    {
+        return Cannons.Count > 1;
     }
 
     private Cannon GetActiveCannon()
