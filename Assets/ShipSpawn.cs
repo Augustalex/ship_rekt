@@ -25,14 +25,14 @@ namespace DefaultNamespace
         private void SpawnAll()
         {
             Instantiate(MusicPrefab);
-            
-            Spawn(FirstPlayerSpawn.position, "1", "2");
-            Spawn(SecondPlayerSpawn.position, "3", "4");
+
+            Spawn(FirstPlayerSpawn.position, "1", "2", new Vector3(0, 90, 0));
+            Spawn(SecondPlayerSpawn.position, "3", "4", new Vector3(0, -90, 0));
         }
 
-        private void Spawn(Vector3 spawnPosition, string navigatorPlayerId, string cannonPlayerId)
+        private void Spawn(Vector3 spawnPosition, string navigatorPlayerId, string cannonPlayerId, Vector3 rotation)
         {
-            var ship = Instantiate(ShipPrefab, spawnPosition, Quaternion.identity);
+            var ship = Instantiate(ShipPrefab, spawnPosition, Quaternion.identity * Quaternion.Euler(rotation));
             ship.GetComponent<Ship>().PlayerId = navigatorPlayerId;
             ship.GetComponent<CannonManager>().PlayerId = cannonPlayerId;
         }
@@ -44,11 +44,11 @@ namespace DefaultNamespace
             {
                 Destroy(ship);
             }
+
             var music = GameObject.FindGameObjectWithTag("music");
             Destroy(music);
 
             SpawnAll();
-
         }
     }
 }
